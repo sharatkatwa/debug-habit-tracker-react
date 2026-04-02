@@ -14,6 +14,16 @@ const HabitItem = ({ habit }) => {
     updateHabit(habit.id, editData);
     setEditing(false);
   };
+  
+  const priorityTag = () =>{
+    if(habit.priority === 'Low')
+      return <span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded text-emerald-600 bg-emerald-50">Low</span>
+    else if(habit.priority === 'High')
+      return <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded text-red-600 bg-red-50">
+                    High
+                  </span>
+    else return <span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded text-amber-600 bg-amber-50">Medium</span>
+  }
 
   return (
     <div>
@@ -57,9 +67,9 @@ const HabitItem = ({ habit }) => {
               <div className="flex-1">
                 <div className="flex gap-2 items-center mb-1">
                   <span className="text-[10px] font-bold uppercase text-indigo-600">{habit.category}</span>
-                  <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded text-red-600 bg-red-50">
-                    {habit.priority}
-                  </span>
+                  
+                  {/* PRIORITY TAGS */}
+                  {priorityTag()}
                 </div>
                 <h3 className={`text-lg font-bold  ${isDoneToday?'text-slate-400 line-through':'text-slate-800'}`}>{habit.name}</h3>
               </div>
