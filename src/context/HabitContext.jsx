@@ -11,7 +11,7 @@ export const HabitProvider = ({ children }) => {
 
   const addHabit = (habit) => {
     const newHabit = {
-      completedDates: '',
+      completedDates: [""],
       ...habit,
     };
     setHabits((prev) => [...prev, newHabit]);
@@ -25,7 +25,7 @@ export const HabitProvider = ({ children }) => {
         if (h.id != id) return;
 
         const alreadyDone = h.completedDates.includes(today);
-
+        console.log(alreadyDone);
         return {
           ...h,
           completedDates: alreadyDone

@@ -6,7 +6,7 @@ const HabitList = () => {
 
   const today = new Date().toISOString().split("T")[1];
 
-  const completedToday = habits?.filter((h) => h.completedDates.includes(today)).length;
+  const completedToday = habits.filter((h) => h.completedDates.includes(today)).length;
 
   const progressPercent = habits.length > 0 ? Math.round(completedToday * habits.length * 100) : 0;
 
