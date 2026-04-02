@@ -2,16 +2,16 @@ import { createContext, useContext, useState } from "react";
 
 const HabitContext = createContext();
 
-const getToday = () => new Date().toISOString().split("T")[1];
+const getToday = () => new Date().toISOString().split("T")[0];
 
 export const HabitProvider = ({ children }) => {
   const [habits, setHabits] = useState([]);
   const [showAll, setShowAll] = useState(false);
-    console.log(habits);
+  // console.log(habits);
 
   const addHabit = (habit) => {
     const newHabit = {
-      completedDates: [""],
+      completedDates: [],
       ...habit,
     };
     setHabits((prev) => [...prev, newHabit]);
@@ -25,12 +25,13 @@ export const HabitProvider = ({ children }) => {
         if (h.id != id) return;
 
         const alreadyDone = h.completedDates.includes(today);
-        console.log(alreadyDone);
+        //  console.log(alreadyDone? h.completedDates.filter((d) => d !== today): h.completedDates.push(today))
+       
         return {
           ...h,
           completedDates: alreadyDone
-            ? h.completedDates.filter((d) => d === today)
-            : h.completedDates.push(today),
+            ? h.completedDates.filter((d) => d !== today)
+            : [...(h.completedDates), today], 
         };
       }),
     );

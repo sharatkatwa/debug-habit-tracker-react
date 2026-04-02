@@ -23,7 +23,6 @@ const HabitForm = () => {
       id: crypto.randomUUID(),
       completed: false,
     };
-    // console.log(values);
 
     addHabit(payload);
     reset();

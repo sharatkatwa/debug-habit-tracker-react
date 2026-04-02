@@ -7,11 +7,10 @@ const HabitItem = ({ habit }) => {
   const [editing, setEditing] = useState(false);
   const [editData, setEditData] = useState({...habit});
 
-  const today = new Date().toISOString().split("T")[1];
+  const today = new Date().toISOString().split("T")[0];
   const isDoneToday = habit.completedDates.includes(today);
 
   const handleSave = () => {
-    console.log(editData)
     updateHabit(habit.id, editData);
     setEditing(false);
   };
@@ -52,7 +51,7 @@ const HabitItem = ({ habit }) => {
           </div>
         </div>
       ) : (
-        <div className="p-4 bg-white rounded-lg border border-slate-200 transition-all shadow-sm">
+        <div className={`p-4 bg-white rounded-lg border border-slate-200 transition-all ${isDoneToday?'opacity-75':'shadow-sm'}`}>
           <div className="space-y-4" data-protonpass-form="">
             <div className="flex justify-between items-start">
               <div className="flex-1">
@@ -95,7 +94,7 @@ const HabitItem = ({ habit }) => {
                     Delete
                   </button>
                 </div>
-                <button onClick={() =>toggleHabit(habit.id)} className="px-4 py-2 rounded text-sm font-semibold transition-colors bg-indigo-600 text-white hover:bg-indigo-700">
+                <button onClick={() =>toggleHabit(habit.id)} className={`px-4 py-2 rounded text-sm font-semibold transition-colors  ${isDoneToday?'bg-slate-100 text-slate-500':'bg-indigo-600 text-white hover:bg-indigo-700'}`}>
                   {isDoneToday?'Completed':'Complete'}
                 </button>
               </div>

@@ -5,8 +5,10 @@ const HabitList = () => {
   const { habits, showAll, setShowAll } = useHabit();
 
   const today = new Date().toISOString().split("T")[1];
-
-  const completedToday = habits.filter((h) => h.completedDates.includes(today)).length;
+  const completedToday = habits.filter((h) => {
+    console.log(h);
+    return h.completedDates?.includes(today);
+  }).length;
 
   const progressPercent = habits.length > 0 ? Math.round(completedToday * habits.length * 100) : 0;
 
@@ -63,7 +65,7 @@ const HabitList = () => {
         <h3 className="text-xs font-bold uppercase text-slate-500">Your Routine</h3>
         {habits.length > 3 && (
           <button
-            onClick={() =>setShowAll((prev) => !prev)}
+            onClick={() => setShowAll((prev) => !prev)}
             className="text-xs font-semibold text-indigo-600 hover:underline"
           >
             {showAll ? "Show less" : `View all (${habits.length})`}
