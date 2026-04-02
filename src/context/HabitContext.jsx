@@ -20,9 +20,9 @@ export const HabitProvider = ({ children }) => {
   const toggleHabit = (id) => {
     const today = getToday();
 
-    setHabits((prev) =>
-      prev.map((h) => {
-        if (h.id != id) return;
+    setHabits((prev) =>{
+     const updatedArray = prev.map((h) => {
+        if (h.id != id) return h;
 
         const alreadyDone = h.completedDates.includes(today);
         //  console.log(alreadyDone? h.completedDates.filter((d) => d !== today): h.completedDates.push(today))
@@ -33,7 +33,10 @@ export const HabitProvider = ({ children }) => {
             ? h.completedDates.filter((d) => d !== today)
             : [...(h.completedDates), today], 
         };
-      }),
+      })
+      console.log(updatedArray);
+      return updatedArray
+    }
     );
   };
 

@@ -61,7 +61,7 @@ const HabitItem = ({ habit }) => {
                     {habit.priority}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-800">{habit.name}</h3>
+                <h3 className={`text-lg font-bold  ${isDoneToday?'text-slate-400 line-through':'text-slate-800'}`}>{habit.name}</h3>
               </div>
               <div className="text-right ml-4">
                 <div className="flex items-center justify-end text-slate-700">

@@ -3,14 +3,14 @@ import HabitItem from "./HabitItem";
 
 const HabitList = () => {
   const { habits, showAll, setShowAll } = useHabit();
-
+  // console.log(habits);
   const today = new Date().toISOString().split("T")[0];
   const completedToday = habits.filter((h) => {
-    console.log(h);
+    // console.log(h);
     return h.completedDates?.includes(today);
   }).length;
 
-  const progressPercent = habits.length > 0 ? Math.round(completedToday * habits.length * 100) : 0;
+  const progressPercent = habits.length > 0 ? Math.round((completedToday / habits.length * 100)) : 0;
 console.log("progressPercent:",progressPercent);
   
   const topCategory = habits.reduce((acc, h) => {
@@ -49,7 +49,7 @@ console.log("progressPercent:",progressPercent);
           </div>
         </div>
         <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-          <div className={`bg-indigo-600 h-full transition-all w-[${progressPercent}%] duration-500`}></div>
+          <div className={`bg-indigo-600 h-full transition-all duration-500`} style={{width: `${progressPercent}%`}}></div>
         </div>
         <div className="grid grid-cols-2 gap-4 mt-5 pt-4 border-t border-slate-100">
           <div>
