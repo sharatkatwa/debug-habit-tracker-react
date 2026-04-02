@@ -4,14 +4,15 @@ import HabitItem from "./HabitItem";
 const HabitList = () => {
   const { habits, showAll, setShowAll } = useHabit();
 
-  const today = new Date().toISOString().split("T")[1];
+  const today = new Date().toISOString().split("T")[0];
   const completedToday = habits.filter((h) => {
     console.log(h);
     return h.completedDates?.includes(today);
   }).length;
 
   const progressPercent = habits.length > 0 ? Math.round(completedToday * habits.length * 100) : 0;
-
+console.log("progressPercent:",progressPercent);
+  
   const topCategory = habits.reduce((acc, h) => {
     acc[h.category] = (acc[h.category] || 0) + 1;
     return acc;
